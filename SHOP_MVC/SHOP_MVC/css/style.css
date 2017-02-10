@@ -2194,9 +2194,9 @@ nav > ul > li.item-home .show-submenu {
 .item-slide-content {
   position: absolute;
   top: 105px;
-  right: 130px; }
+  left: 130px; }
   .item-slide-content.slide2 {
-    right: 222px;
+    left: 222px;
     top: 50px; }
 
 .slide-title {
