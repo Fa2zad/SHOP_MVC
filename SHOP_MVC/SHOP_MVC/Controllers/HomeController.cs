@@ -11,6 +11,8 @@ namespace SHOP_MVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Title = "فروشگاه اینترنتی";
+
             return View();
         }
     }

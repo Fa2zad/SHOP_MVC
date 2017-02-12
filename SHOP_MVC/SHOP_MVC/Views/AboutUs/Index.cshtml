@@ -1,4 +1,6 @@
-﻿<div class="main-content">
+﻿@model SHOP_MVC.Models.PageSettings
+
+<div class="main-content">
     <div class="about-top">
         <div class="container">
             <div class="breadcrumb-sidebar">
@@ -6,20 +8,20 @@
                     <nav class="breadcrumb-trail breadcrumbs">
                         <ul class="trail-items">
                             <li class="trail-item trail-begin">
-                                <a href="#"><span>Home</span></a>
+                                <a href="#"><span>خانه</span></a>
                             </li>
                             <li class="trail-item trail-end">
-                                <span>Electronic</span>
+                                <span>درباره ما</span>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
-            <p class="title-left">About Us</p>
+            <p class="title-left">@Model.Title</p>
             <div class="row">
                 <div class="col-md-4">
                     <div class="about-top1">
-                        <p class="title-left">Well Come To Shop</p>
+                        <p class="title-left">WellCome To Shop</p>
                         <a href="#"><img src="/images/about-big.jpg" alt="ab" height="242" width="372"></a>
                     </div>
                 </div>
@@ -27,16 +29,7 @@
                     <div class="about-top2">
                         <p class="title-left">&nbsp;</p>
                         <p>
-                            Nulla auctor mauris ut dui luctus semper. In hac habitasse platea dictumst.
-                            Duis pellentesque ligula a risus suscipit dignissim. Nunc non nisl lacus.
-                            Integer pharetra lacinia dapibus. Donec eu dolor dui, vel posuere mauris.<br /><br />
-
-                            Pellentesque semper congue sodales. In consequat, metus eget con sequat ornare,
-                            augue dolor blandit purus, vitae lacinia nisi tellus in erat. Nulla ac justo
-                            eget massa aliquet sodales. Maecenas mattis male suada sem, in fringilla massa
-                            dapibus quis. Suspendisse aliquam leo id neque auctor molestie. Etiam at nulla tellus.<br /><br />
-
-                            Nulla auctor mauris ut dui luctus semper. In hac habitasse platea dictumst.
+                            @Model.Text
                         </p>
                     </div>
                 </div>
@@ -68,7 +61,7 @@
                     </span>
                 </div>
             </div>
-            <div class="about-bottom-box supermartket-owl-carousel has-dots" data-number="4" data-margin="30" data-dots="yes">
+            <div class="about-bottom-box supermartket-owl-carousel has-dots" data-number="4" data-margin="30" data-dots="yes" data-rtl="yes" data-autoplay="yes">
                 <div class="about-box">
                     <figure><img src="/images/ab1.jpg" alt="" height="201" width="271"></figure>
                     <a href="#" class="about-name">Micheal Jack</a>
@@ -141,7 +134,7 @@
                                             Guaranteed refunds
                                             Escrow protection on every oder
                                         </p>
-                                        <a href="#">Read More<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                        <a href="#">Read More<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +154,7 @@
                                             Worldwide shipping
                                             Low prices from US $0.1
                                         </p>
-                                        <a href="#">Read More<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                        <a href="#">Read More<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +174,7 @@
                                             Worldwide shipping
                                             Low prices from US $0.1
                                         </p>
-                                        <a href="#">Read More<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                        <a href="#">Read More<i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>

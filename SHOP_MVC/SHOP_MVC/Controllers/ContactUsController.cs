@@ -11,6 +11,8 @@ namespace SHOP_MVC.Controllers
         // GET: Contact
         public ActionResult Index()
         {
+            ViewBag.Title = "تماس با ما";
+
             return View();
         }
     }

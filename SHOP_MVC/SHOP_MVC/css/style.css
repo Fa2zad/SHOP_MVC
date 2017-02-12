@@ -925,7 +925,7 @@ nav > ul > li.item-home .show-submenu {
   color: #333;
   bottom: 0; }
   .more-categories::after {
-    content: "\f101";
+    content: "\f100";
     font-family: FontAwesome;
     font-size: 14px;
     line-height: 25px;

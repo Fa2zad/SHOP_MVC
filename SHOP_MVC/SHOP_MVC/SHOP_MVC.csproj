@@ -567,7 +567,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\images\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SHOP_MVC.Models\SHOP_MVC.Models.csproj">
+      <Project>{9d3f5168-cee3-472f-95d7-7844d93563ca}</Project>
+      <Name>SHOP_MVC.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

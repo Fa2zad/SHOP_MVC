@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+﻿jQuery(document).ready(function ($) {
     'use strict';
     //   wow
     new WOW().init();
@@ -610,12 +610,12 @@ jQuery(document).ready(function ($) {
     /*  [ more Categorie ]
      - - - - - - - - - - - - - - - - - - - - */
     $(document).on('click','.open-cate',function(){
-        $(this).addClass('colse-cate').removeClass('open-cate').html('Close');
+        $(this).addClass('colse-cate').removeClass('open-cate').html('بستن');
         $('.category-drop-list').addClass('category-show-more');
     })
     /* Close Categorie */
     $(document).on('click','.colse-cate',function(){
-        $(this).addClass('open-cate').removeClass('colse-cate').html('More Categories');
+        $(this).addClass('open-cate').removeClass('colse-cate').html('مشاهده موارد بیشتر');
         $('.category-drop-list').removeClass('category-show-more');
         return false;
     })
