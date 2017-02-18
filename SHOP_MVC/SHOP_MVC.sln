@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOP_MVC", "SHOP_MVC\SHOP_M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOP_MVC.Models", "SHOP_MVC.Models\SHOP_MVC.Models.csproj", "{9D3F5168-CEE3-472F-95D7-7844D93563CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOP_MVC.DataLayer", "SHOP_MVC.DataLayer\SHOP_MVC.DataLayer.csproj", "{F7F1CA57-A954-41D9-86A3-E63523FC1289}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9D3F5168-CEE3-472F-95D7-7844D93563CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D3F5168-CEE3-472F-95D7-7844D93563CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D3F5168-CEE3-472F-95D7-7844D93563CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F1CA57-A954-41D9-86A3-E63523FC1289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F1CA57-A954-41D9-86A3-E63523FC1289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F1CA57-A954-41D9-86A3-E63523FC1289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F1CA57-A954-41D9-86A3-E63523FC1289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
