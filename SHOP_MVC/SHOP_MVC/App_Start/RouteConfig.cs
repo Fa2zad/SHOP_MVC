@@ -17,6 +17,7 @@ namespace SHOP_MVC
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //namespaces: new string[] { "Areas.Controllers" }
             );
         }
     }
