@@ -26,11 +26,16 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <input type="file" name="Image" value="" />
+                            <label class="control-label col-md-2">تصویر</label> 
+                            @*@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10 fileupload">
+                                <input type="file" name="Image_0" value="" />
                                 @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })*@
-                                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-xs btn-info btnAddFileUpload">تصویر جدید</button>
                             </div>
                         </div>
 
@@ -83,3 +88,11 @@
     <!-- /.row -->
 </div>
 
+@section Scripts {
+    <script>
+        var index = 0;
+        $('.btnAddFileUpload').click(function () {
+            $('.fileupload:last').after('<span class="col-md-2"></span><div class="col-md-10 fileupload"><input type="file" name="Image_'+ ++index +'" value="" /></div>').clone();
+        });
+    </script>
+}

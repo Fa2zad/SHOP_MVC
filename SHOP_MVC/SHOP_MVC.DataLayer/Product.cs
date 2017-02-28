@@ -14,9 +14,6 @@ namespace SHOP_MVC.DataLayer
         [StringLength(50)]
         public string Title { get; set; }
 
-        [Display(Name = "تصویر")]
-        public string Image { get; set; }
-
         [Display(Name = "توضیحات")]
         public string Description { get; set; }
 

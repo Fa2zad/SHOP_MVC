@@ -25,27 +25,34 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
         {
             if (ModelState.IsValid)
             {
-                var image = Request.Files["Image"];
-                //var extention = image.ContentType;
-                var path = Server.MapPath("~/images/Uploads/Products/");
-                var filename = "";
-                if (System.IO.File.Exists(path + image.FileName))
-                {
-                    
-                    filename = DateTime.UtcNow.Ticks + ".jpg";
-                    image.SaveAs(path + filename);
-                }
-                else
-                {
-                    filename = image.FileName;
-                    image.SaveAs(path + filename);
-                }
-
-                product.Image = filename;
-
                 var db = new EntityContext();
                 db.Products.Add(product);
-                db.SaveChanges(); 
+                db.SaveChanges();
+
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var image = Request.Files["Image_" + i];
+                    //var extention = image.ContentType;
+                    var path = Server.MapPath("~/images/Uploads/Products/");
+                    var filename = "";
+                    if (System.IO.File.Exists(path + image.FileName))
+                    {
+
+                        filename = image.FileName + DateTime.UtcNow.Ticks + ".jpg";
+                        image.SaveAs(path + filename);
+                    }
+                    else
+                    {
+                        filename = image.FileName;
+                        image.SaveAs(path + filename);
+                    }
+
+                    var productImage = new ProductImage();
+                    productImage.ProductID = product.ID;
+                    productImage.Image = filename;
+                    db.ProductsImages.Add(productImage);
+                }
+                db.SaveChanges();
             }
             return View();
 
