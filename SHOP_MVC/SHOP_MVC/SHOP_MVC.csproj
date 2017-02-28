@@ -578,6 +578,7 @@
     <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -606,6 +607,7 @@
     <Content Include="less\variables.less" />
     <Content Include="Areas\Dashboard\Views\Products\Add.cshtml" />
     <Content Include="Areas\Dashboard\Views\Products\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
 ﻿using SHOP_MVC.DataLayer;
+using SHOP_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,31 @@ namespace SHOP_MVC.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var db = new EntityContext();
-            var list = db.Products.ToList();
+            var model = new HomeSettings();
+            using (var db = new EntityContext())
+            {
+                model.ProductImages = (from item in db.ProductsImages
+                                      select new SimpleProductImage
+                                      {
+                                          ID = item.ID,
+                                          Image = item.Image,
+                                          ProductID = item.ProductID
+                                      }).ToList();
 
+                model.Products = (from item in db.Products
+                                       select new SimpleProduct
+                                       {
+                                           ID = item.ID,
+                                           Title = item.Title,
+                                           Price = item.Price,
+                                           RegisterDate = item.RegisterDate,
+                                           IsActive = item.IsActive
+                                       }).ToList();
+            }
+                //var products = db.Products.ToList();
+                
             ViewBag.Title = "فروشگاه اینترنتی";
-
-            return View();
+            return View(model);
         }
     }
 }
