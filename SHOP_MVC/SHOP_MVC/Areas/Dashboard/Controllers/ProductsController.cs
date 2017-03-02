@@ -13,10 +13,13 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Title = "همه محصولات";
             return View();
         }
         public ActionResult Add()
         {
+            ViewBag.Title = "افزودن محصول";
+
             return View();
         }
 

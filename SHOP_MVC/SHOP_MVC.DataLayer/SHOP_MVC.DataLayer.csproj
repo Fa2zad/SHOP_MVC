@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactUsMessage.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EntityContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
