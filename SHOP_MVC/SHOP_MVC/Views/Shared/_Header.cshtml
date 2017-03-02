@@ -1,0 +1,158 @@
+﻿<header class="header header-style2">
+    <div class="header-mid">
+        <div class="container">
+            <div class="header-mid-left">
+                <p class="wellcome-to">خوش آمدید</p>
+                <p class="register-or-login">
+                    <a href="#" class="register">ثبت نام</a>
+                    &nbsp;یا&nbsp;
+                    <a href="#" class="login">ورود</a>
+                </p>
+            </div>
+            <div class="header-mid-right">
+                <div class="header-mid-right-content">
+                    <a href="#">
+                        <i class="flaticon-user-outline"></i>
+                        حساب من
+                    </a>
+                </div>
+                <div class="header-mid-right-content">
+                    <a href="#">
+                        <i class="flaticon-like"></i>
+                        علاقه مندی های من
+                    </a>
+                </div>
+                <div class="header-mid-right-content">
+                    <a href="#">
+                        <i class="flaticon-check-square"></i>
+                        پرداخت
+                    </a>
+                </div>
+                <div class="header-mid-right-content country-select-menu">
+                    <div class="country-select">
+                        <div class="country select">
+                            <img src="/images/flag.jpg" alt="flag" width="24" height="17">
+                            فارسی
+                        </div>
+                        <div class="country-dropdown">
+                            <div class="country">
+                                <img src="/images/flag2.jpg" alt="flag" width="24" height="17">
+                                English
+                            </div>
+                            <div class="country">
+                                <img src="/images/flag3.jpg" alt="flag" width="24" height="17">
+                                German
+                            </div>
+                            <div class="country">
+                                <img src="/images/flag4.jpg" alt="flag" width="24" height="17">
+                                French
+                            </div>
+                            <div class="country">
+                                <img src="/images/flag5.jpg" alt="flag" width="24" height="17">
+                                Canada
+                            </div>
+                            <div class="country">
+                                <img src="/images/flag6.jpg" alt="flag" width="24" height="17">
+                                Australia
+                            </div>
+                        </div>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </div>
+
+                </div>
+                <div class="header-mid-right-content money-select-menu">
+                    <div class="money-select">
+                        <div class="money select">
+                            ریال
+                        </div>
+                        <div class="money-dropdown">
+                            <div class="money">
+                                EGP
+                            </div>
+                            <div class="money">
+                                EURO
+                            </div>
+                            <div class="money">
+                                USD
+                            </div>
+
+                        </div>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-bottom-left">
+                <h1 class="logo">
+                    <a href="/">
+                        <img src="/images/logo.png" alt="logo">
+                    </a>
+                </h1>
+                <div class="header-search">
+                    <form action="form.php" class="form form-search-header">
+                        <select name="show-categories" id="show-categories">
+                            <option value="all">همه دسته بندی ها</option>
+                            <option value="Automovie & Motorcyle">اتومبیل و موتورسیکلت</option>
+                            <option value="Electronics">لوازم برقی</option>
+                            <option value="Sport & Outdoors">کالای ورزشی</option>
+                            <option value="Handbags">ساک دستی و چمدان </option>
+                            <option value="Fashion">پوشاک </option>
+                            <option value="camera & usb">دوربین دیجیتال</option>
+                            <option value="smartphone & headphone">اسمارت فون و تبلت</option>
+                        </select>
+                        <input type="text" placeholder="جستجو...">
+                        <button class="button-search"><i class="flaticon-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="header-bottom-right">
+                <div class="header-bottom-right-content">
+                    <a href="#">
+                        <i class="flaticon-like"></i>
+                        علاقه مندی ها
+                    </a>
+                </div>
+                <div class="header-bottom-right-content cart-menu-relative">
+                    <div class="cart-menu">
+                        <a href="#">
+                            <i class="flaticon-commerce"></i>
+                            سبد خرید
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            <p class="cart-amount">6</p>
+                        </a>
+                    </div>
+                    <div class="cart-hover">
+                        <div class="cart-hover-title">کالای شما <span>قیمت</span></div>
+                        <ul class="list-hover-cart">
+                            <li class="hover-cart-item">
+                                <a href="#" class="img-hover-cart">
+                                    <img src="/images/img-hover-cart.jpg" alt="img-hover-cart" width="75" height="89">
+                                    <span class="delete-product-hover-cart"><i class="fa fa-times-circle" aria-hidden="true"></i></span>
+                                </a>
+                                <div class="text-hover-cart">
+                                    <a href="#" class="name-hover-cart">
+                                        Men's Skagen Watch
+                                        Vesion 2.0
+                                    </a>
+                                    <div class="quantity">
+                                        <p class="quanlity-hover-cart">تعداد: <span>1</span></p>
+                                    </div>
+                                </div>
+                                <div class="price-hover-cart">150000 ریال</div>
+                            </li>
+                        </ul>
+                        <div class="subtotal-hover-cart">مجموع کل <span>150000 ریال</span></div>
+                        <div class="button-cart-hover">
+                            <a href="#" class="go-to-cart button">برو به سبد خرید</a>
+                            <a href="#" class="check-out button orange">پرداخت</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_Menu")
+</header>

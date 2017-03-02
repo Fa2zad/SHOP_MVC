@@ -613,6 +613,9 @@
     <Content Include="Areas\Dashboard\Views\Products\Add.cshtml" />
     <Content Include="Areas\Dashboard\Views\Products\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
