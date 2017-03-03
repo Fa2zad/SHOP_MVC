@@ -15,8 +15,12 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "همه محصولات";
-            
-            return View();
+
+            using (var db = new EntityContext())
+            {
+                List<Product> model = db.Products.ToList();
+                return View(model);
+            }
         }
         public ActionResult Add()
         {

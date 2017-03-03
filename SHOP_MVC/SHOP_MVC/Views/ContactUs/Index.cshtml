@@ -22,17 +22,17 @@
                     <!--<div class="contact-form">-->
                     <div class="contact-form-top">
                         @Html.ValidationMessageFor(a => a.Name, "" ,new { @class = "alert alert-danger" }, "div")
-                        @Html.TextBoxFor(a => a.Name, new { placeholder = "نام شما..."})
+                        @Html.TextBoxFor(a => a.Name, new { placeholder = "نام شما...", @class = "form-control" })
                         <!--<input type="text" name="name" placeholder="نام شما...">-->
                         @Html.ValidationMessageFor(a => a.Email, "", new { @class = "alert alert-danger" }, "div")
-                        @Html.TextBoxFor(a => a.Email, new { placeholder = "ایمیل شما..." })
+                        @Html.TextBoxFor(a => a.Email, new { placeholder = "ایمیل شما...", @class = "form-control" })
                         <!--<input type="text" name="email" placeholder="ایمیل شما...">-->
                         @Html.ValidationMessageFor(a => a.Subject, "", new { @class = "alert alert-danger" }, "div")
-                        @Html.TextBoxFor(a => a.Subject, new { placeholder = "موضوع..." })
+                        @Html.TextBoxFor(a => a.Subject, new { placeholder = "موضوع...", @class = "form-control" })
                         <!--<input type="text" name="subject" placeholder="موضوع...">-->
                     </div>
                         @Html.ValidationMessageFor(a => a.Message, "", new { @class = "alert alert-danger" }, "div")
-                        @Html.TextAreaFor(a => a.Message, 3, 3, new { placeholder = "پیام..." })
+                        @Html.TextAreaFor(a => a.Message, 3, 3, new { placeholder = "پیام...", @class = "form-control" })
                         <!--<textarea name="message" cols="3" rows="3" placeholder="پیام..."></textarea>-->
                         <button type="submit" class="btn btn-warning">ارسال پیام</button>
                     <!--</div>-->
