@@ -16,6 +16,7 @@ namespace SHOP_MVC.DataLayer
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductsImages { get; set; }
         public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
 
     }

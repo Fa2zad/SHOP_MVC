@@ -41,12 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProductSettings.cs" />
     <Compile Include="ContactUsModel.cs" />
     <Compile Include="HomeSettings.cs" />
     <Compile Include="PageSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleCategory.cs" />
     <Compile Include="SimpleProduct.cs" />
     <Compile Include="SimpleProductImage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dashboard\" />
+    <Folder Include="Public\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

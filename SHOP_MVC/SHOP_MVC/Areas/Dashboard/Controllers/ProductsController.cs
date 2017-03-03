@@ -1,4 +1,5 @@
 ﻿using SHOP_MVC.DataLayer;
+using SHOP_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,25 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "همه محصولات";
+            
             return View();
         }
         public ActionResult Add()
         {
             ViewBag.Title = "افزودن محصول";
 
-            return View();
+            var model = new AddProductSettings();
+            using (var db = new EntityContext())
+            {
+                model.Categories = (from item in db.Categories
+                                    select new SimpleCategory
+                                    {
+                                        ID = item.ID,
+                                        Title = item.Title
+                                    }).ToList();
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -35,29 +48,45 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var image = Request.Files["Image_" + i];
-                    //var extention = image.ContentType;
-                    var path = Server.MapPath("~/images/Uploads/Products/");
-                    var filename = "";
-                    if (System.IO.File.Exists(path + image.FileName))
+                    if (image.ContentLength != 0)
                     {
+                        //var extention = image.ContentType;
 
-                        filename = image.FileName + DateTime.UtcNow.Ticks + ".jpg";
-                        image.SaveAs(path + filename);
-                    }
-                    else
-                    {
-                        filename = image.FileName;
-                        image.SaveAs(path + filename);
-                    }
+                        var path = Server.MapPath("~/images/Uploads/Products/");
+                        var filename = "";
+                        if (System.IO.File.Exists(path + image.FileName))
+                        {
 
-                    var productImage = new ProductImage();
-                    productImage.ProductID = product.ID;
-                    productImage.Image = filename;
-                    db.ProductsImages.Add(productImage);
+                            filename = image.FileName + DateTime.UtcNow.Ticks + ".jpg";
+                            image.SaveAs(path + filename);
+                        }
+                        else
+                        {
+                            filename = image.FileName;
+                            image.SaveAs(path + filename);
+                        }
+
+                        var productImage = new ProductImage();
+                        productImage.ProductID = product.ID;
+                        productImage.Image = filename;
+                        db.ProductsImages.Add(productImage);
+                    }
+                    
                 }
                 db.SaveChanges();
             }
-            return View();
+
+            var model = new AddProductSettings();
+            using (var db = new EntityContext())
+            {
+                model.Categories = (from item in db.Categories
+                                    select new SimpleCategory
+                                    {
+                                        ID = item.ID,
+                                        Title = item.Title
+                                    }).ToList();
+            }
+            return View(model);
 
         }
     }

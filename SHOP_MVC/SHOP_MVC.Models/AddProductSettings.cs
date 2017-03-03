@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SHOP_MVC.DataLayer
+namespace SHOP_MVC.Models
 {
-    public class Product : EntityBase
+    public class AddProductSettings
     {
+        [Display(Name = "دسته بندی")]
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]
-        public Category Category { get; set; }
 
-        [Display(Name ="عنوان")]
+        [Display(Name = "عنوان")]
         [Required]
         [StringLength(50)]
         public string Title { get; set; }
@@ -32,5 +32,6 @@ namespace SHOP_MVC.DataLayer
 
         [Display(Name = "فعال")]
         public Boolean IsActive { get; set; }
+        public List<SimpleCategory> Categories { get; set; }
     }
 }
