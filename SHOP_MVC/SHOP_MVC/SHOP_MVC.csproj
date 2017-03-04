@@ -568,6 +568,7 @@
     <Content Include="css\_params.scss" />
     <Content Include="css\_responsive.scss" />
     <Content Include="css\_shopingcart.scss" />
+    <Content Include="Areas\Dashboard\Views\ContactUsMessages\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -577,6 +578,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\ContactUsMessagesController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
