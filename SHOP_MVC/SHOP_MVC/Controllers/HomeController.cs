@@ -16,23 +16,25 @@ namespace SHOP_MVC.Controllers
             var model = new HomeSettings();
             using (var db = new EntityContext())
             {
+                model.Products = (from item in db.Products
+                                  orderby item.RegisterDate descending
+                                  select new SimpleProduct
+                                  {
+                                      ID = item.ID,
+                                      Title = item.Title,
+                                      Price = item.Price,
+                                      RegisterDate = item.RegisterDate,
+                                      IsActive = item.IsActive
+                                  }).Take(10).ToList();
+
                 model.ProductImages = (from item in db.ProductsImages
-                                      select new SimpleProductImage
+                                       //where item.ProductID = (from item2 in model.Products select item2.ID)
+                                       select new SimpleProductImage
                                       {
                                           ID = item.ID,
                                           Image = item.Image,
                                           ProductID = item.ProductID
                                       }).ToList();
-
-                model.Products = (from item in db.Products
-                                       select new SimpleProduct
-                                       {
-                                           ID = item.ID,
-                                           Title = item.Title,
-                                           Price = item.Price,
-                                           RegisterDate = item.RegisterDate,
-                                           IsActive = item.IsActive
-                                       }).ToList();
             }
                 //var products = db.Products.ToList();
                 
