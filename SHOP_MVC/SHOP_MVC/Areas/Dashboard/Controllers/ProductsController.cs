@@ -1,4 +1,5 @@
-﻿using SHOP_MVC.DataLayer;
+﻿using AutoMapper;
+using SHOP_MVC.DataLayer;
 using SHOP_MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "همه محصولات";
+            ViewBag.Title = "همه کالاها";
 
             using (var db = new EntityContext())
             {
@@ -22,76 +23,117 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
                 return View(model);
             }
         }
-        public ActionResult Add()
+        public ActionResult Edit(int? id)
         {
-            ViewBag.Title = "افزودن محصول";
-
-            var model = new AddProductSettings();
             using (var db = new EntityContext())
             {
-                model.Categories = (from item in db.Categories
-                                    select new SimpleCategory
-                                    {
-                                        ID = item.ID,
-                                        Title = item.Title
-                                    }).ToList();
-            }
+                ProductDTO productDTO = null;
 
-            return View(model);
+                if (id.HasValue) //Edit
+                {
+                    ViewBag.Title = "ویرایش کالا";
+                    var product = db.Products.Single(item => item.ID == id);
+                    productDTO = Mapper.Map<ProductDTO>(product);
+                    productDTO.ProductImages = Mapper.Map<List<SimpleProductImage>>(db.ProductsImages.Where(a => a.ProductID == id).ToList());
+                    //productDTO.ProductImages = product.ProductsImages;
+                }
+                else
+                {
+                    ViewBag.Title = "کالای جدید";
+
+                    productDTO = new ProductDTO();
+                }
+
+                productDTO.Categories = Mapper.Map<List<SimpleCategory>>(db.Categories.ToList());
+               
+                return View(productDTO);
+            }
         }
 
         [HttpPost]
-        public ActionResult Add(Product product)
+        public ActionResult Edit(int? id, ProductDTO productDTO)
         {
-            if (ModelState.IsValid)
-            {
-                var db = new EntityContext();
-                db.Products.Add(product);
-                db.SaveChanges();
-
-                for (int i = 0; i < Request.Files.Count; i++)
-                {
-                    var image = Request.Files["Image_" + i];
-                    if (image.ContentLength != 0)
-                    {
-                        //var extention = image.ContentType;
-
-                        var path = Server.MapPath("~/images/Uploads/Products/");
-                        var filename = "";
-                        if (System.IO.File.Exists(path + image.FileName))
-                        {
-
-                            filename = image.FileName + DateTime.UtcNow.Ticks + ".jpg";
-                            image.SaveAs(path + filename);
-                        }
-                        else
-                        {
-                            filename = image.FileName;
-                            image.SaveAs(path + filename);
-                        }
-
-                        var productImage = new ProductImage();
-                        productImage.ProductID = product.ID;
-                        productImage.Image = filename;
-                        db.ProductsImages.Add(productImage);
-                    }
-                    
-                }
-                db.SaveChanges();
-            }
-
-            var model = new AddProductSettings();
             using (var db = new EntityContext())
             {
-                model.Categories = (from item in db.Categories
-                                    select new SimpleCategory
-                                    {
-                                        ID = item.ID,
-                                        Title = item.Title
-                                    }).ToList();
-            }
-            return View(model);
+                int pid = 0;
 
+                if (ModelState.IsValid)
+                {
+                    if (id.HasValue)
+                    {
+                        ViewBag.Title = "ویرایش کالا";
+
+                        var p = db.Products.Single(item => item.ID == id);
+                        p.Title = productDTO.Title;
+                        p.Count = productDTO.Count;
+                        p.CategoryID = productDTO.CategoryID;
+                        p.Description = productDTO.Description;
+                        p.IsActive = productDTO.IsActive;
+                        p.Price = productDTO.Price;
+                        //all
+                        //db.Products.Single(item => item.ID == id);
+                        //var entity = Mapper.Map< Product>(productDTO);
+
+                        pid = id.Value;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        ViewBag.Title = "کالای جدید";
+
+                        var entity = Mapper.Map<Product>(productDTO);
+                        db.Products.Add(entity);
+                        db.SaveChanges();
+                        pid = entity.ID;
+                    }
+                    foreach (string fileuploadname in Request.Files)
+                    {
+                        var image = Request.Files[fileuploadname];
+                        var imageid = int.Parse(fileuploadname.Remove(0, 6));
+                        if (image.ContentLength != 0)
+                        {
+                            //var extention = image.ContentType;
+
+                            var path = Server.MapPath("~/images/Uploads/Products/");
+                            var filename = "";
+                            if (System.IO.File.Exists(path + image.FileName))
+                            {
+
+                                filename = image.FileName + DateTime.UtcNow.Ticks + ".jpg";
+                                image.SaveAs(path + filename);
+                            }
+                            else
+                            {
+                                filename = image.FileName;
+                                image.SaveAs(path + filename);
+                            }
+
+                            if (imageid > 0)
+                            {
+                                var productImage = db.ProductsImages.Where(a => a.ID == imageid).Single();
+                                System.IO.File.Delete(path + productImage.Image);
+                                productImage.Image = filename;
+                            }
+                            else
+                            {
+                                var productImage = new ProductImage();
+                                productImage.ProductID = pid;
+                                productImage.Image = filename;
+                                db.ProductsImages.Add(productImage);
+                            }
+                            
+                        }
+
+                    }
+                    db.SaveChanges();
+                    ViewBag.IsSuccess = true;
+                }
+
+                productDTO.Categories = Mapper.Map<List<SimpleCategory>>(db.Categories.ToList());
+                productDTO.ProductImages = Mapper.Map<List<SimpleProductImage>>(db.ProductsImages.Where(a => a.ProductID == id).ToList());
+
+                return View(productDTO);
+            }
         }
     }
 }

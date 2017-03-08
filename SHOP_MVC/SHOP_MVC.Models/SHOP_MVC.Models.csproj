@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProductSettings.cs" />
+    <Compile Include="ProductDTO.cs" />
     <Compile Include="ContactUsModel.cs" />
     <Compile Include="HomeSettings.cs" />
     <Compile Include="PageSettings.cs" />

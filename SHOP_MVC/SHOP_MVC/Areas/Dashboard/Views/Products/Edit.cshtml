@@ -1,18 +1,22 @@
-﻿@model AddProductSettings
-    @{ 
-        var categories = Model.Categories.Select(item => new SelectListItem() { Text = item.Title, Value = item.ID.ToString() }).ToList();
-    }
+﻿@model ProductDTO
+@{
+    var categories = Model.Categories.Select(item => new SelectListItem() { Text = item.Title, Value = item.ID.ToString() }).ToList();
+}
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">افزودن محصول</h1>
+            <h1 class="page-header">@ViewBag.Title</h1>
             <div class="col-lg-6">
-                @using (Html.BeginForm("Add", "Products", FormMethod.Post, new { enctype = "multipart/form-data" } ))
+
+                @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @*@Html.AntiForgeryToken()*@
 
                     <div class="form-horizontal">
-
+                       @if (ViewBag.IsSuccess == true)
+                        {
+                        <div class="alert alert-success">تغییرات با موفقیت ثبت شد.</div>
+                        }
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
@@ -32,12 +36,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">تصویر</label> 
+                            <label class="control-label col-md-3">تصویر</label>
                             @*@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-9 fileupload">
-                                <input type="file" name="Image_0" value="" />
-                                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })*@
-                            </div>
+                            @if ((Model.ProductImages != null) && (Model.ProductImages.Count != 0))
+                            {
+
+                                foreach (var item in Model.ProductImages)
+                                {
+                                    <span class="col-md-3"></span>
+                                    <div class="col-md-9 fileupload">
+                                        <img src="~/images/Uploads/Products/@item.Image" alt="" width="180" /><span>@item.Image</span>
+                                        <input type="file" name="Image_@item.ID" value="" />
+                                    </div>
+                                }
+
+                            }
+                            else
+                            {
+                                <span class="col-md-3"></span>
+                                <div class="col-md-9 fileupload">
+
+                                    <input type="file" name="Image_0" value="" />
+                                </div>
+                            }
+
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-xs-12">
@@ -81,14 +103,18 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-10">
-                                <input type="submit" value="افزودن" class="btn btn-success" />
+                                <input type="submit" value="ثبت" class="btn btn-success" />
+                                    @if (ViewBag.IsSuccess == true)
+                                    {
+                                        <span class="alert alert-success">تغییرات با موفقیت ثبت شد.</span>
+                                    }
                             </div>
                         </div>
                     </div>
                 }
-                </div>
-
             </div>
+
+        </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
@@ -98,7 +124,7 @@
     <script>
         var index = 0;
         $('.btnAddFileUpload').click(function () {
-            $('.fileupload:last').after('<span class="col-md-3"></span><div class="col-md-9 fileupload"><input type="file" name="Image_'+ ++index +'" value="" /></div>').clone();
+            $('.fileupload:last').after('<span class="col-md-3"></span><div class="col-md-9 fileupload"><input type="file" name="Image_' + --index + '" value="" /></div>').clone();
         });
     </script>
 }

@@ -32,7 +32,7 @@
                             <td>@item.Count</td>
                             <td>@item.RegisterDate.ToString()</td>
                             <td>@Html.CheckBox("active" + item.ID, item.IsActive, new { disabled = "disabled" })</td>
-                            <td><a href="/Dashboard/Products/Add/@item.ID" class="btn btn-warning btn-sm">ویرایش</a></td>
+                            <td><a href="/Dashboard/Products/Edit/@item.ID" class="btn btn-warning btn-sm">ویرایش</a></td>
                         </tr>
                     }
                 </tbody>

@@ -14,23 +14,18 @@ namespace SHOP_MVC.DataLayer
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
 
-        [Display(Name ="عنوان")]
         [Required]
         [StringLength(50)]
         public string Title { get; set; }
 
-        [Display(Name = "توضیحات")]
         public string Description { get; set; }
 
-        [Display(Name = "قیمت")]
         [Required]
         public int Price { get; set; }
 
-        [Display(Name = "تعداد")]
         [Required]
         public int Count { get; set; }
 
-        [Display(Name = "فعال")]
         public Boolean IsActive { get; set; }
     }
 }

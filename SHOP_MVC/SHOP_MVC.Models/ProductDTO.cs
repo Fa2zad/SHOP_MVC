@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SHOP_MVC.Models
 {
-    public class AddProductSettings
+    public class ProductDTO
     {
         [Display(Name = "دسته بندی")]
         public int CategoryID { get; set; }
@@ -33,5 +33,6 @@ namespace SHOP_MVC.Models
         [Display(Name = "فعال")]
         public Boolean IsActive { get; set; }
         public List<SimpleCategory> Categories { get; set; }
+        public List<SimpleProductImage> ProductImages { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using SHOP_MVC.DataLayer;
+using SHOP_MVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +16,18 @@ namespace SHOP_MVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Mapper.Initialize(config => 
+            {
+                config.CreateMap<Product, ProductDTO>();
+                config.CreateMap<ProductDTO, Product>();
+
+                config.CreateMap<Category, SimpleCategory>();
+                config.CreateMap<SimpleCategory, Category>();
+
+                config.CreateMap<ProductImage, SimpleProductImage>();
+                config.CreateMap<SimpleProductImage, ProductImage>();
+            });
         }
     }
 }
