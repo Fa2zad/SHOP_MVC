@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SHOP_MVC.Models
 {
-    public class HomeSettings
+    public class HomeDTO
     {
         public List<SimpleProduct> Products { get; set; }
 
-        public List<SimpleProductImage> ProductImages { get; set; }
     }
 }

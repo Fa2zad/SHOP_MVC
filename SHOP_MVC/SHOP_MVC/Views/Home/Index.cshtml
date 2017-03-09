@@ -1,9 +1,5 @@
-﻿@model HomeSettings
-    @{ 
-        var productimage = Model.ProductImages.Select(item => new ProductImage() { ID = item.ID, Image = item.Image, ProductID = item.ProductID });
-
-        var product = Model.Products.Select(item => new Product() { ID = item.ID,  Title = item.Title, Price = item.Price, Count = item.Count, RegisterDate=item.RegisterDate });
-    }
+﻿@model HomeDTO
+   
 <div class="main-content has-background-color" data-background-color="#f2f2f2">
     <div class="banner-home banner-home2">
         <div class="container">
@@ -168,32 +164,9 @@
                     <a href="#" class="button-link">لیست کامل <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
                 </div>
                 <div class="products-slide supermartket-owl-carousel" data-number="6" data-margin="0" data-navcontrol="yes" data-rtl="yes" data-autoplay="yes" data-loop="no">
-                    @foreach (var item in product)
+                    @foreach (var item in Model.Products)
                     {
-                        var image = "";
-                        var flag = true;
-                        foreach (var item2 in productimage)
-                        {
-                            if ((item.ID == item2.ProductID) && flag == true)
-                            {
-                                image = item2.Image;
-                                flag = false;
-                            }
-                            
-
-                        }
-                        <div class="product-list-content">
-                            <div class="product-media">
-                                <figure><a href="/Product/@item.ID"><img src="~/images/Uploads/Products/@image" alt="pr-h2" width="182" height="213"></a></figure>
-                            </div>
-                            <a href="#" class="feature-slide-name">@item.Title</a>
-                            <p class="feature-slide-cost"><span class="price">@item.Price تومان</span></p>
-                            <ul class="product-item-actions">
-                                <li><a href="#"><i class="flaticon-like"></i></a></li>
-                                <li><a href="#"><i class="flaticon-arrows"></i></a></li>
-                                <li><a href="#"><i class="flaticon-commerce"></i></a></li>
-                            </ul>
-                        </div>
+                        @Html.Partial("_ProductItem", item);
                     }
                     
                     

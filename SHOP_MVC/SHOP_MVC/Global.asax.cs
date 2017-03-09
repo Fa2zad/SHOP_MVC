@@ -27,6 +27,9 @@ namespace SHOP_MVC
 
                 config.CreateMap<ProductImage, SimpleProductImage>();
                 config.CreateMap<SimpleProductImage, ProductImage>();
+
+                config.CreateMap<Product, SimpleProduct>();
+                config.CreateMap<SimpleProduct, Product>();
             });
         }
     }
