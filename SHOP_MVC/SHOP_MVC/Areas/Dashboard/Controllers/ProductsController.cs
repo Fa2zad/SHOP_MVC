@@ -135,5 +135,23 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
                 return View(productDTO);
             }
         }
+
+        public ActionResult Delete(int id)
+        {
+            using (var db = new EntityContext())
+            {
+                var pruduct = db.Products.Where(item => item.ID == id).Single();
+                var productImages = db.ProductsImages.Where(item => item.ProductID == id).ToList();
+
+                foreach (var item in productImages)
+                {
+                    System.IO.File.Delete(Server.MapPath("/images/Uploads/Products/") + item.Image);
+                }
+
+                db.Products.Remove(pruduct);
+                db.SaveChanges();
+            }
+            return Redirect("/Dashboard/Products?success=true");
+        }
     }
 }
