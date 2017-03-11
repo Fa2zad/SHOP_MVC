@@ -644,6 +644,10 @@
       <Project>{9d3f5168-cee3-472f-95d7-7844d93563ca}</Project>
       <Name>SHOP_MVC.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SHOP_MVC.Services\SHOP_MVC.Services.csproj">
+      <Project>{745072cc-0edb-4ec0-a5fa-47c65c44f484}</Project>
+      <Name>SHOP_MVC.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

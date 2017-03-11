@@ -22,8 +22,11 @@ namespace SHOP_MVC.Controllers
                 foreach (var item in homeDTO.Products)
                 {
                     item.Image = db.ProductsImages.Where(image => image.ProductID == item.ID).FirstOrDefault()?.Image ?? @"product_default.jpg";
+                    if (!System.IO.File.Exists(Server.MapPath("~/images/Uploads/Products/" + item.Image)))
+                    {
+                        item.Image = "product_default.jpg";
+                    } 
                 }
-
                 ViewBag.Title = "فروشگاه اینترنتی";
                 return View(homeDTO);
             }
