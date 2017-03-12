@@ -43,6 +43,40 @@ namespace SHOP_MVC.Services
             }
         }
 
+        public ProductDTO GetProductDTOByID(int id)
+        {
+            using (var db = new EntityContext())
+            {
+                var productsList = from item in db.Products
+                                   where item.ID == id
+                                   select new ProductDTO()
+                                   {
+                                       CategoryID = item.CategoryID,
+                                       Count = item.Count,
+                                       Description = item.Description,
+                                       IsActive = item.IsActive,
+                                       Price = item.Price,
+                                       Title = item.Title,
+
+                                       ProductImages = (from item2 in db.ProductsImages
+                                                        where item2.ProductID == id
+                                                        select new SimpleProductImage()
+                                                        {
+                                                            ID = item2.ID,
+                                                            Image = item2.Image,
+                                                            ProductID = item2.ProductID
+                                                        }).ToList(),
+                                       Categories = (from item3 in db.Categories
+                                                    select new SimpleCategory()
+                                                    {
+                                                        ID = item3.ID,
+                                                        Title = item3.Title
+                                                    }).ToList()
+                                   };
+                return productsList.Single();
+            }
+        }
+
         public void Insert(Product product)
         {
             using (var db = new EntityContext())

@@ -26,26 +26,25 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
         }
         public ActionResult Edit(int? id)
         {
-                ProductDTO productDTO = null;
+            ProductDTO productDTO = null;
 
-                if (id.HasValue) //Edit
-                {
-                    ViewBag.Title = "ویرایش کالا";
-                    var product = productsServices.GetByID(id.Value);
-                    productDTO = Mapper.Map<ProductDTO>(product);
-                    productDTO.ProductImages = Mapper.Map<List<SimpleProductImage>>(productsImagesServices.GetByProductID(id.Value));
-                    //productDTO.ProductImages = product.ProductsImages;
-                }
-                else
-                {
-                    ViewBag.Title = "کالای جدید";
+            if (id.HasValue) //Edit
+            {
+                ViewBag.Title = "ویرایش کالا";
+                
+                productDTO = productsServices.GetProductDTOByID(id.Value);
+            }
+            else
+            {
+                ViewBag.Title = "کالای جدید";
 
-                    productDTO = new ProductDTO();
-                }
-
+                productDTO = new ProductDTO();
                 productDTO.Categories = categoriesServices.GetForDropdown();
+            }
+
+            
                
-                return View(productDTO);
+            return View(productDTO);
         }
 
         [HttpPost]
@@ -117,8 +116,6 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
 
         public ActionResult Delete(int id)
         {
-            using (var db = new EntityContext())
-            {
                 var productImages = productsImagesServices.GetByProductID(id);
 
                 foreach (var item in productImages)
@@ -127,7 +124,6 @@ namespace SHOP_MVC.Areas.Dashboard.Controllers
                 }
                 productsServices.Delete(id);
                 
-            }
             return Redirect("/Dashboard/Products?success=true");
         }
     }

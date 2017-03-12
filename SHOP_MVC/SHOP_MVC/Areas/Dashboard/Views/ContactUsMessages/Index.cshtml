@@ -15,6 +15,7 @@
             <table class="table table-striped table-hover table-bordered bg-info">
                 <thead class="">
                     <tr>
+                        <th></th>
                         <th>ردیف</th>
                         <th>نام</th>
                         <th>ایمیل</th>
@@ -27,24 +28,56 @@
                 <tbody>
                     @foreach (var item in @Model)
                     {
+                        var isread = item.IsRead;
                         <tr>
+                            <td>
+                                @if (isread)
+                                {
+                                    <span class="fa fa-envelope-open read"></span>
+                                }
+                                else
+                                {
+                                    <span class="fa fa-envelope unread"></span>
+                                }
+                            </td>
                             <td>@(index++)</td>
                             <td>@item.Name</td>
                             <td>@item.Email</td>
                             <td>@item.Subject</td>
                             <td>@item.Message</td>
                             <td>@item.RegisterDate</td>
-                            <td><a href="/Dashboard/ContactUsMessages/Index/@item.ID" class="btn btn-danger btn-sm">حذف</a></td>
+                            <td>
+                                @if (isread)
+                                {
+                                    <a href="/Dashboard/ContactUsMessages/UnRead/@item.ID" class="btn btn-default btn-sm fa fa-envelope-o unread" title="علامت گذاری به عنوان خوانده نشده"></a>
+                                }
+                                else
+                                {
+                                    <a href="/Dashboard/ContactUsMessages/Read/@item.ID" class="btn btn-default btn-sm fa fa-envelope-open-o read" title="علامت گذاری به عنوان خوانده شده"></a>
+                                }
+                                &nbsp;<a href="/Dashboard/ContactUsMessages/Delete/@item.ID" class="btn btn-default btn-sm fa fa-remove delete" title="حذف"></a>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
+        
     </div>
+
 </div>
 
 @section Scripts {
 
+
+}
+
+@section Head{
+    <style>
+        .read {color: gray}
+        .unread {color: #ffa400}
+        .delete {color: red}
+    </style >
 }
 
 

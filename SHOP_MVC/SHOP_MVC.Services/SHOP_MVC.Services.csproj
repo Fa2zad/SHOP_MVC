@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriesServices.cs" />
+    <Compile Include="ContactUsMessagesServices.cs" />
     <Compile Include="ProductImagesServices.cs" />
     <Compile Include="ProductsServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
